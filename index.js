@@ -2,7 +2,10 @@ const express = require('express')
 const app = express()
 const Dictionary = require('./src/dictionary.js')
 const Game = require('./src/Game.js')
-Dictionary.getWord().then(word => console.log('word: ', word))
+let wordcomplete;
+let i=0;
+Dictionary.getWord().then(word => console.log('word: ', word));
+
 
 /*app.get('/game', (req, res) => {
     res.send({
@@ -27,8 +30,10 @@ Dictionary.getWord().then(word => console.log('word: ', word))
 
 app.get('/game', (req, res) => {
     console.log("entro");
-    //let game = new Game();
-    Game.create(0)
+        i++;
+        Dictionary.getWord().then(word => wordcomplete = word);
+    
+    Game.create(wordcomplete,i)
        .then(game => {
           console.log(game);
            res.send(game)            

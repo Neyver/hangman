@@ -1,34 +1,33 @@
 const fs = require('fs');
+//let mapJson = require('./assets/save-game.json');
 class Game {
-	constructor(id){
+	
+	constructor(word,id){
 		this.id = id;
-		this.hint = "_ _ _ _";
+		this.hint =word;
 		this.leftAttempts = 10;
 	}
 
-	static create(name){
+	static create(name,i){
 		return new Promise((resolve, reject) => {
-		var game = new Game(0);
+		var game = new Game(name,i);
 		var miMapa = new Map();
 		miMapa.set(game,game);
-		console.log(miMapa.get(game));
-		console.log("entro al crear");
 	    var data = {};
 		
 	    var json = JSON.stringify(miMapa.get(game));
 	    fs.writeFileSync('./assets/save-game.json',json);
 	    console.log(json);
-    return resolve(json);
+   		 return resolve(json);
     })
 	}
 
-	 getName(){
-	 	console.log("aaaaaaaaaa");
-	 	return this.name;
+	 getJson(){
+	 	console.log(mapJson);
+	 	return mapJson;
+
 	 }
-	 /*cargarDatos(eval) {
-	 	eval(json);
-	 }*/
+	 
 } 
 
 module.exports = Game
