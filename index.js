@@ -1,9 +1,10 @@
 const express = require('express')
 const app = express()
 const Dictionary = require('./src/dictionary.js')
+const Game = require('./src/Game.js')
 Dictionary.getWord().then(word => console.log('word: ', word))
 
-app.get('/game', (req, res) => {
+/*app.get('/game', (req, res) => {
     res.send({
         id: 1,
         hint: '_ _ _ _ A',
@@ -22,16 +23,19 @@ app.get('/game', (req, res) => {
  |
 `
     })
-})
+})*/
 
+Game.create("hola").then(game => console.log('game:', game))
 app.get('/game', (req, res) => {
-    Game.create()
-        .then(game => {
-            res.send(game)            
+    console.log("entro");
+    //let game = new Game();
+    Game.create("new game")
+       .then(game => {
+           res.send(game)            
         })
         .catch(err => {
-            res.status(500).send({
-                error: 'Game could not be created'
+           res.status(500).send({
+               error: 'Game could not be created'
             })
         })
 })
