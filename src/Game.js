@@ -7,21 +7,19 @@ class Game {
 	}
 
 	static create(name){
-	var game = new Game(0);
-	var miMapa = new Map();
-	miMapa.set(game,game);
-	console.log(miMapa.get(game));
-	console.log("entro al crear");
-    var data = {};
-    data.id = 0;
-    data.name = name;
-    data.hint = "_ _ _ A";
-    data.leftAttempts = 10;
-   
-    var json = JSON.stringify(miMapa.get(game));
-    fs.writeFileSync('./assets/save-game.json',json);
-    console.log(json);
-    return json;
+		return new Promise((resolve, reject) => {
+		var game = new Game(0);
+		var miMapa = new Map();
+		miMapa.set(game,game);
+		console.log(miMapa.get(game));
+		console.log("entro al crear");
+	    var data = {};
+		
+	    var json = JSON.stringify(miMapa.get(game));
+	    fs.writeFileSync('./assets/save-game.json',json);
+	    console.log(json);
+    return resolve(json);
+    })
 	}
 
 	 getName(){
