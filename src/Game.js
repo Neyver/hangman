@@ -1,5 +1,4 @@
 const fs = require('fs');
-//let mapJson = require('./assets/save-game.json');
 class Game {
 	
 	constructor(word,id){
