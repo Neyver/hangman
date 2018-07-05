@@ -25,12 +25,12 @@ Dictionary.getWord().then(word => console.log('word: ', word))
     })
 })*/
 
-Game.create("hola").then(game => console.log('game:', game))
 app.get('/game', (req, res) => {
     console.log("entro");
     //let game = new Game();
-    Game.create("new game")
+    Game.create(0)
        .then(game => {
+          console.log(game);
            res.send(game)            
         })
         .catch(err => {
